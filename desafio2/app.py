@@ -16,7 +16,10 @@ while True:
                 opcao = input(menu_principal)
 
                 if opcao == '1':
-                    deposito()
+                    depo_novo_valor = float(input("Qual a quantia que você quer depositar: "))
+                    novoDeposito = deposito(saldo, depo_novo_valor, extrato)
+                    saldo = novoDeposito["saldo"]
+                    extrato = novoDeposito["extrato"]
 
                 elif opcao == '2':
                     valor_saque = input("QUAL VALOR VOCÊ QUER SACAR?")
@@ -55,6 +58,9 @@ Preciso que informe respectivamente: logradouro , bairro , cidade, estado""")
 
         if newUser == 200:
             print("Usuário criado com sucesso.")
+        
+        else: 
+            print("Houve algum problema, por favor tente de novo mais tarde!")
 
     
     else:

@@ -18,5 +18,3 @@ def verifyUsers(cpf_user):
             
     else:
         return 404
-
-verifyUsers(cpf_user=123)
