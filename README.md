@@ -1,10 +1,10 @@
 # Bootcamp-vivo
 
-#Funcionalidades
+# Funcionalidades
 
-##Criar usuários
-##Sacar
-##Depositar
-##Verificar extrato
-##Mudar de conta
+## Criar usuários
+## Sacar
+## Depositar
+## Verificar extrato
+## Mudar de conta
 
