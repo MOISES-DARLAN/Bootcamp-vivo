@@ -8,8 +8,7 @@ while True:
     opcao_login = input(menu_login)
 
     if opcao_login == '1':
-        cpf_verificar = int(input("digite seu cpf: "))
-        usuario = verifyUsers(cpf_user=cpf_verificar)
+        usuario = verifyUsers(cpf_user=int(input("Digite o seu cpf: ")))
         
         if usuario != 404:
             print(f"Bem vindo de volta {usuario["name"]}")
@@ -37,3 +36,27 @@ while True:
         
         else:
             print("Esse usuário não existe")
+    
+    elif opcao_login == "2":
+        print(mensagemCadastro)
+        nome_NU = input("Seu nome é: ")
+        dataNascimento_NU = input("O ano do seu nascimento é: ")
+        cpf_NU = input("Seu cpf é: ")
+
+        print("""\n   Agora vamos cadastrar seu endereço.
+Preciso que informe respectivamente: logradouro , bairro , cidade, estado""")
+        logradouro_NU = input("Logradouro: ")
+        cidade_NU = input("Cidade/sigla: ")
+        bairro_NU = input("Bairro: ")
+        estado_NU = input("Estado/sigla: ")
+
+        endereco_NU = endereço(logradouro=logradouro_NU, bairro=bairro_NU, cidade=cidade_NU, estado=estado_NU)
+        newUser = criate_users(nome=nome_NU, data_nasc=dataNascimento_NU, cpf=cpf_NU, endereço=endereco_NU)
+
+        if newUser == 200:
+            print("Usuário criado com sucesso.")
+
+    
+    else:
+        print("opção invalida")
+    
