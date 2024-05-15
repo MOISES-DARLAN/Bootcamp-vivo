@@ -7,7 +7,7 @@ from menus import *
 while True:
     opcao_login = input(menu_login)
 
-    if opcao_login == '1':
+    if opcao_login == '1': #fazer login
         usuario = verifyUsers(cpf_user=int(input("Digite o seu cpf: ")))
         
         if usuario != 404:
@@ -40,7 +40,7 @@ while True:
         else:
             print("Esse usuário não existe")
     
-    elif opcao_login == "2":
+    elif opcao_login == "2": #cadastrar novo user
         print(mensagemCadastro)
         nome_NU = input("Seu nome é: ")
         dataNascimento_NU = input("O ano do seu nascimento é: ")
