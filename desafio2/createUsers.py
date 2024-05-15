@@ -4,7 +4,7 @@ def criate_users(nome="users", data_nasc="none", cpf="none", endereço=[]):
     global users
     if users.count(int(cpf))> 0:
         error = "ERRO! JÁ EXISTE UM USUÁRIO CADASTRADO COM ESSE CPF."
-        return 400
+        return 404
 
     else:
         new_user = {"name": nome, "data_nasc" : data_nasc, "cpf": int(cpf), "endereço": endereço}

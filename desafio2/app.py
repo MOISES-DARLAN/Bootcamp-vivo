@@ -4,6 +4,7 @@ from deposito import *
 from databases import *
 from menus import *
 from extrato import *
+from contasUsers import *
 
 while True:
     opcao_login = input(menu_login)
@@ -15,6 +16,18 @@ while True:
             print(f"Bem vindo de volta {usuario["name"]}")
             while True:
                 opcao = input(menu_principal)
+                if opcao == '0':
+                    contas_usuario = buscar_contas(cpf_=usuario["cpf"], bd_contas_=contas)
+
+                    if contas_usuario != 404:
+                        id_conta = 0
+                        for contaUser in contas_usuario:
+                            print(f"[{id_conta}] {contaUser['username']}")
+                            id_conta += 1
+                        
+                        trocar_para_conta = input("\nQual a conta que você quer acessar?")
+                    else:
+                        print("Você não possui mais contas.")
 
                 if opcao == '1':
                     depo_novo_valor = float(input("Qual a quantia que você quer depositar: "))
@@ -70,6 +83,9 @@ Preciso que informe respectivamente: logradouro , bairro , cidade, estado""")
         if newUser == 200:
             print("Usuário criado com sucesso.")
         
+        elif newUser == 404:
+            print("já existe um usuário cadastrado com essa conta!")
+
         else: 
             print("Houve algum problema, por favor tente de novo mais tarde!")
 

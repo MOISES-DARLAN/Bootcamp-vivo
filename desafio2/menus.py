@@ -9,6 +9,7 @@ Aperte o número correspodente a sua escolha: """
 
 menu_principal = """
 Escolha o que você quer fazer:
+[0] Trocar de conta
 [1] Depositar
 [2] Sacar
 [3] Consultar extrato
