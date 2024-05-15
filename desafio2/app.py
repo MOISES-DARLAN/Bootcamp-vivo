@@ -3,6 +3,7 @@ from createUsers import *
 from deposito import deposito
 from databases import *
 from menus import *
+from extrato import *
 
 while True:
     opcao_login = input(menu_login)
@@ -28,7 +29,7 @@ while True:
 
                 elif opcao == '3':
                     print(f"\nseu saldo é de R$ {saldo:.2f} \n")
-                    print('\n'.join(extrato))
+                    mostrarExtrato(extrato_=extrato)
 
                 elif opcao == '4':
                     print("Você saiu do app.")
