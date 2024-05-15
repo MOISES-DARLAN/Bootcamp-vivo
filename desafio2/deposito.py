@@ -1,9 +1,7 @@
-def deposito():
-    global saldo, extrato
-    valor = input("Digite o valor que deseja depositar: ")
-    if valor.isnumeric():
-        saldo += float(valor)
-        extrato.append(f"Nº {len(extrato)+1} - depósito - R$ {saldo:.2f}")
-        print(f"Depositado R$ {valor}")
-    else:
-        print('Digite um valor válido')
+from databases import *
+def deposito(saldo_, depo_valor, extrato_=[]):
+        if depo_valor > 0:
+            saldo_ += depo_valor
+            extrato_.append(f"Nº {len(extrato_)+1} - depósito - R$ {float(depo_valor):.2f}")
+            return {"saldo" : saldo_, "extrato": extrato_.reverse()}
+
