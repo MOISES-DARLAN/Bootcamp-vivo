@@ -1,6 +1,6 @@
 from saque import saque, endereço
 from createUsers import *
-from deposito import deposito
+from deposito import *
 from databases import *
 from menus import *
 from extrato import *
@@ -18,18 +18,28 @@ while True:
 
                 if opcao == '1':
                     depo_novo_valor = float(input("Qual a quantia que você quer depositar: "))
-                    novoDeposito = deposito(saldo, depo_novo_valor, extrato)
-                    saldo = novoDeposito["saldo"]
-                    extrato = novoDeposito["extrato"]
+                    objetoDeposito = deposito(saldo, depo_novo_valor, extrato)
+                    if objetoDeposito != 404:     
+                        saldo = objetoDeposito["saldo"]
+                        extrato = objetoDeposito["extrato"]
+                        print(f"Você depositou R$ {depo_novo_valor:.2f}")
+                    
+                    else: 
+                        print("Houve um problema ao realizar o deposito")
 
                 elif opcao == '2':
-                    valor_saque = input("QUAL VALOR VOCÊ QUER SACAR?")
+                    valor_saque = int(input("QUAL VALOR VOCÊ QUER SACAR?"))
                     cont_saque = 0
-                    saque(saldo=saldo,lim_saque=LIM_SAQUE, val_saque=valor_saque)
+                    novoSaque = saque(saldo_=saldo, val_saque_=valor_saque, ext=extrato, lim_saque=LIM_SAQUE, vezes_sacadas_=vezes_sacadas)
+                    if novoSaque["code"] != 404:
+                        saldo = novoSaque["saldo"]
+                        extrato = novoSaque["extrato"]
+                        print(f"Você sacou R$ {valor_saque:.2f}")
+                    else: 
+                        print("não foi possivel fazer o saque.")
 
                 elif opcao == '3':
-                    print(f"\nseu saldo é de R$ {saldo:.2f} \n")
-                    mostrarExtrato(extrato_=extrato)
+                    mostrarExtrato(saldo_=saldo, extrato_=extrato)
 
                 elif opcao == '4':
                     print("Você saiu do app.")

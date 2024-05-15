@@ -1,23 +1,23 @@
 from databases import *
 
-
-
-def saque(*, saldo, val_saque, ext, lim, num_saque, lim_saque ):
-    vezes_sacadas += 1
-    if vezes_sacadas < lim_saque:
-        sacar_valor = val
-        if sacar_valor.isnumeric() and float(sacar_valor) <= saldo:
-            saldo -= float(sacar_valor)
-            sacado = float(sacar_valor)
-            extrato.append(f"Nº {len(extrato)+1} - SAQUE - R$ {sacado:.2f}")
-            vezes_sacadas += 1
-            print(f'\n Você sacou R$ {sacar_valor}')
-        else:
-            print('Valor inválido ou saldo insuficiente')
+def podeSaque(*, lim_saque_, vezes_sacadas_):
+    if vezes_sacadas_ <lim_saque_:
+        return True 
     else:
-        print('Limite de saques diário atingido.')
-
-    print(ext)
+        return False
+def saque(*, saldo_, val_saque_=0, ext,lim_saque, vezes_sacadas_=0):
+    crontrole = podeSaque(lim_saque_=lim_saque, vezes_sacadas_=vezes_sacadas_)# add num_saque
+    if crontrole:
+        sacar_valor = float(val_saque_)
+        if saldo_>= sacar_valor:
+            novo_saldo = saldo_ - sacar_valor
+            ext.append(f"Nº {len(extrato)+1} - SAQUE - R$ {sacar_valor:.2f}")
+            vezes_sacadas_ += 1
+            return {'code': 200, 'mensage': 'Saldo atualizado', "extrato": ext, 'saldo': novo_saldo}
+        else:
+            return {'code': 402}
+    else:
+        return {'code': 404}
 
 
 def endereço(*, logradouro , bairro , cidade, estado):
