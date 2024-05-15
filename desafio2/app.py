@@ -7,7 +7,7 @@ from menus import *
 while True:
     opcao_login = input(menu_login)
 
-    if opcao_login == '1':
+    if opcao_login == '1': #fazer login
         usuario = verifyUsers(cpf_user=int(input("Digite o seu cpf: ")))
         
         if usuario != 404:
@@ -16,7 +16,10 @@ while True:
                 opcao = input(menu_principal)
 
                 if opcao == '1':
-                    deposito()
+                    depo_novo_valor = float(input("Qual a quantia que você quer depositar: "))
+                    novoDeposito = deposito(saldo, depo_novo_valor, extrato)
+                    saldo = novoDeposito["saldo"]
+                    extrato = novoDeposito["extrato"]
 
                 elif opcao == '2':
                     valor_saque = input("QUAL VALOR VOCÊ QUER SACAR?")
@@ -37,7 +40,7 @@ while True:
         else:
             print("Esse usuário não existe")
     
-    elif opcao_login == "2":
+    elif opcao_login == "2": #cadastrar novo user
         print(mensagemCadastro)
         nome_NU = input("Seu nome é: ")
         dataNascimento_NU = input("O ano do seu nascimento é: ")
@@ -55,6 +58,9 @@ Preciso que informe respectivamente: logradouro , bairro , cidade, estado""")
 
         if newUser == 200:
             print("Usuário criado com sucesso.")
+        
+        else: 
+            print("Houve algum problema, por favor tente de novo mais tarde!")
 
     
     else:
